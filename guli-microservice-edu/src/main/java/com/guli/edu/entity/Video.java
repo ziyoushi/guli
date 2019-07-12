@@ -69,11 +69,11 @@ public class Video implements Serializable {
     @Version
     private Long version;
 
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty(value = "创建时间",example = "2019-01-01 8:00:00")
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
-    @ApiModelProperty(value = "更新时间")
+    @ApiModelProperty(value = "更新时间",example = "2019-01-01 8:00:00")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
