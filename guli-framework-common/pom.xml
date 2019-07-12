@@ -12,6 +12,7 @@
 
     <artifactId>guli-framework-common</artifactId>
     <packaging>jar</packaging>
+    <description>common工程</description>
 
     <dependencies>
 
