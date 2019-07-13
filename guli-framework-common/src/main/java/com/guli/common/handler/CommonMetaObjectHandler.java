@@ -1,4 +1,4 @@
-package com.guli.edu.handler;
+package com.guli.common.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
@@ -8,11 +8,11 @@ import java.util.Date;
 
 /**
  * @author Administrator
- * @create 2019-07-12 14:49
- * 配置时间自动填充
+ * @create 2019-07-12 19:21
  */
 @Component
-public class EduMetaObjectHandler implements MetaObjectHandler {
+public class CommonMetaObjectHandler implements MetaObjectHandler {
+
     @Override
     public void insertFill(MetaObject metaObject) {
         this.setFieldValByName("gmtCreate", new Date(), metaObject);
