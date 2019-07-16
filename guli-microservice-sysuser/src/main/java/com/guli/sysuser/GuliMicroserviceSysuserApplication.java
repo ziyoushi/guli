@@ -2,10 +2,9 @@ package com.guli.sysuser;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-@SpringBootApplication
-@ComponentScan(basePackages = {"com.guli.sysuser.config"})
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class GuliMicroserviceSysuserApplication {
 
     public static void main(String[] args) {
