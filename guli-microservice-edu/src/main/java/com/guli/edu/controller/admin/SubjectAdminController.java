@@ -6,6 +6,7 @@ import com.guli.common.exception.GuliException;
 import com.guli.common.vo.R;
 import com.guli.edu.service.SubjectService;
 import com.guli.edu.vo.SubjectNestedVo;
+import com.guli.edu.vo.SubjectVo2;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,14 @@ public class SubjectAdminController {
 
         List<SubjectNestedVo> subjectNestedVoList = subjectService.nestedList();
         return R.ok().data("items", subjectNestedVoList);
+    }
+
+    @ApiOperation(value = "嵌套数据列表test")
+    @GetMapping("list2")
+    public R nestedList2(){
+
+        List<SubjectVo2> subjectVo2List = subjectService.nestedList2();
+        return R.ok().data("items", subjectVo2List);
     }
 
 }
