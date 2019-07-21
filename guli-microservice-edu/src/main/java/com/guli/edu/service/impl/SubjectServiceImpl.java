@@ -8,6 +8,7 @@ import com.guli.edu.mapper.SubjectMapper;
 import com.guli.edu.service.SubjectService;
 import com.guli.edu.vo.SubjectNestedVo;
 import com.guli.edu.vo.SubjectVo;
+import com.guli.edu.vo.SubjectVo2;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -167,6 +168,12 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
         }
 
         return subjectNestedVoArrayList;
+    }
+
+    //ps 这边主要是为了测试mapper.xml无法打包
+    @Override
+    public List<SubjectVo2> nestedList2() {
+        return baseMapper.selectNestedListByParentId("0");
     }
 
     //判断一级分类是否重复
