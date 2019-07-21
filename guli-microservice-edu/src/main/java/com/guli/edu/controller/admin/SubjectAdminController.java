@@ -5,6 +5,7 @@ import com.guli.common.constants.ResultCodeEnum;
 import com.guli.common.exception.GuliException;
 import com.guli.common.vo.R;
 import com.guli.edu.service.SubjectService;
+import com.guli.edu.vo.SubjectNestedVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +35,13 @@ public class SubjectAdminController {
     @PostMapping("/import")
     public R batchImport(@RequestParam("file") MultipartFile file){
 
-
         try {
             List<String> errorMsg = subjectService.batchImport(file);
             if (errorMsg.size() == 0){
                 //批量导入成功
                 return R.ok().message("批量导入成功");
             }else {
-
                 return R.error().message("部门数据导入失败").data("errorMsgList",errorMsg);
-
             }
 
         } catch (Exception e) {
@@ -53,6 +51,13 @@ public class SubjectAdminController {
 
     }
 
+    @ApiOperation(value = "嵌套数据列表")
+    @GetMapping("")
+    public R nestedList(){
+
+        List<SubjectNestedVo> subjectNestedVoList = subjectService.nestedList();
+        return R.ok().data("items", subjectNestedVoList);
+    }
 
 }
 
