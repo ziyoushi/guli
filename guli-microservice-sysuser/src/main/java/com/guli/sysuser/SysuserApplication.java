@@ -8,10 +8,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-public class GuliMicroserviceSysuserApplication {
+public class SysuserApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GuliMicroserviceSysuserApplication.class, args);
+        SpringApplication.run(SysuserApplication.class, args);
     }
 
 }
