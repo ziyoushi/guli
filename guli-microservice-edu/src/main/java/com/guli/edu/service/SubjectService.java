@@ -3,6 +3,7 @@ package com.guli.edu.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guli.edu.entity.Subject;
 import com.guli.edu.vo.SubjectNestedVo;
+import com.guli.edu.vo.SubjectVo2;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -22,5 +23,8 @@ public interface SubjectService extends IService<Subject> {
 
     //封装一级、二级嵌套数据
     List<SubjectNestedVo> nestedList();
+
+    //方式二
+    List<SubjectVo2> nestedList2();
 
 }
