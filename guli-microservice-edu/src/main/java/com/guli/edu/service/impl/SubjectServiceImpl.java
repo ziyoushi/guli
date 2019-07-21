@@ -6,9 +6,12 @@ import com.guli.common.util.ExcelImportUtil;
 import com.guli.edu.entity.Subject;
 import com.guli.edu.mapper.SubjectMapper;
 import com.guli.edu.service.SubjectService;
+import com.guli.edu.vo.SubjectNestedVo;
+import com.guli.edu.vo.SubjectVo;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -116,6 +119,54 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
         }
 
         return errorMsg;
+    }
+
+    @Override
+    public List<SubjectNestedVo> nestedList() {
+
+        List<SubjectNestedVo> subjectNestedVoArrayList = new ArrayList<>();
+
+        //注意为了方便 组装数据 两次查询的排序方式一定要相同
+        //只分两次查询 一次是将一级分类查出 一次是将二级分类查出后 进行数据封装
+
+        //一级查询添加 parenId = 0
+        QueryWrapper<Subject> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("parent_id","0");
+        queryWrapper.orderByAsc("sort","id");
+        List<Subject> subjectList = baseMapper.selectList(queryWrapper);
+
+        //添加二级查询 parentId != 0
+        QueryWrapper<Subject> queryWrapper2 = new QueryWrapper<>();
+        queryWrapper2.ne("parent_id","0");
+        queryWrapper2.orderByAsc("sort","id");
+        List<Subject> subSubjectList = baseMapper.selectList(queryWrapper2);
+
+
+        //创建一级分类vo对象 将数据填充
+        for (int i = 0; i < subjectList.size(); i++) {
+
+            Subject subject = subjectList.get(i);
+            SubjectNestedVo subjectNestedVo = new SubjectNestedVo();
+            //对象拷贝
+            BeanUtils.copyProperties(subject,subjectNestedVo);
+            subjectNestedVoArrayList.add(subjectNestedVo);
+
+            List<SubjectVo> subjectVoList = new ArrayList<>();
+
+            for (int j = 0; j < subSubjectList.size(); j++) {
+                Subject subSubject = subSubjectList.get(j);
+
+                if (subSubject.getParentId().equals(subject.getId())){
+                    SubjectVo subjectVo = new SubjectVo();
+                    BeanUtils.copyProperties(subSubject,subjectVo);
+                    subjectVoList.add(subjectVo);
+                }
+
+            }
+            subjectNestedVo.setChildren(subjectVoList);
+        }
+
+        return subjectNestedVoArrayList;
     }
 
     //判断一级分类是否重复
