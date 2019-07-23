@@ -28,7 +28,7 @@ public class CourseAdminController {
     private CourseService courseService;
 
     @ApiOperation(value = "新增课程")
-    @PostMapping("save-course-info")
+    @PostMapping("/save-course-info")
     public R saveCourseInfo(
             @ApiParam(name = "CourseInfoForm", value = "课程基本信息", required = true)
             @RequestBody CourseInfoForm courseInfoForm){
@@ -48,4 +48,16 @@ public class CourseAdminController {
         return R.ok().data("item",courseInfoForm);
     }
 
+    @ApiOperation(value = "更新课程")
+    @PutMapping("/update-course-info/{id}")
+    public R updateCourseInfoById(
+            @ApiParam(name = "CourseInfoForm", value = "课程基本信息", required = true)
+            @RequestBody CourseInfoForm courseInfoForm,
+
+            @ApiParam(name = "id", value = "课程ID", required = true)
+            @PathVariable String id){
+
+        courseService.updateCourseInfoById(courseInfoForm);
+        return R.ok();
+    }
 }
