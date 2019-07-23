@@ -26,7 +26,9 @@ import java.util.Date;
 @ApiModel(value="Course对象", description="课程")
 public class Course implements Serializable {
 
+    //草稿保存
     public static final String COURSE_DRAFT = "Draft";
+    //正常保存
     public static final String COURSE_NORMAL = "Normal";
 
     private static final long serialVersionUID = 1L;
