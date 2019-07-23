@@ -7,8 +7,11 @@ import com.guli.edu.mapper.TeacherMapper;
 import com.guli.edu.query.TeacherQuery;
 import com.guli.edu.service.TeacherService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 /**
  * <p>
@@ -20,6 +23,9 @@ import org.springframework.util.StringUtils;
  */
 @Service
 public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> implements TeacherService {
+
+    @Autowired
+    private TeacherMapper teacherMapper;
 
     @Override
     public void pageQuery(Page<Teacher> pageParam, TeacherQuery teacherQuery) {
@@ -55,5 +61,10 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
 
         baseMapper.selectPage(pageParam,queryWrapper);
 
+    }
+
+    @Override
+    public List<Teacher> getAllTeacherName() {
+        return teacherMapper.getAllTeacherName();
     }
 }
