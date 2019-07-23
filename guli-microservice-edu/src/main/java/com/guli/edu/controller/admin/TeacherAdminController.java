@@ -6,14 +6,17 @@ import com.guli.common.constants.ResultCodeEnum;
 import com.guli.common.exception.GuliException;
 import com.guli.common.vo.R;
 import com.guli.edu.entity.Teacher;
+import com.guli.edu.entity.TeacherVo;
 import com.guli.edu.query.TeacherQuery;
 import com.guli.edu.service.TeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -73,6 +76,23 @@ public class TeacherAdminController {
 
         return R.ok().data("rows",records).data("total",total);
     }
+
+    //查询teacher 无参数 只需要返回 id，name
+    @ApiOperation("查询讲师")
+    @GetMapping("/getAll")
+    public R getTeacherList(){
+
+        List<Teacher> records = teacherService.getAllTeacherName();
+        List<TeacherVo> recordVo = new ArrayList<>();
+        for (Teacher teacher : records) {
+            TeacherVo teacherVo = new TeacherVo();
+            BeanUtils.copyProperties(teacher,teacherVo);
+            recordVo.add(teacherVo);
+        }
+
+        return R.ok().data("rows",recordVo);
+    }
+
 
     //新增讲师
     @ApiOperation("新增讲师")
