@@ -1,7 +1,9 @@
 package com.guli.edu.mapper;
 
-import com.guli.edu.entity.Teacher;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.guli.edu.entity.Teacher;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface TeacherMapper extends BaseMapper<Teacher> {
 
+    List<Teacher> getAllTeacherName();
 }
