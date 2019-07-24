@@ -79,5 +79,9 @@ public class Course implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
+    @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
+    @TableField(value = "is_deleted")
+    @TableLogic
+    private Boolean deleted;
 
 }
