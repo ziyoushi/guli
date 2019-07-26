@@ -20,6 +20,7 @@ import java.util.List;
  * @author changchen
  * @since 2019-07-12
  */
+@CrossOrigin //跨域
 @RestController
 @RequestMapping("/admin/edu/chapter")
 public class ChapterAdminController {
@@ -78,7 +79,7 @@ public class ChapterAdminController {
 
     //嵌套查询课程章节列表
     @ApiOperation(value = "嵌套章节数据列表")
-    @GetMapping("nested-list/{courseId}")
+    @GetMapping("/nested-list/{courseId}")
     public R nestedListByCourseId(
             @ApiParam(name = "courseId", value = "课程ID", required = true)
             @PathVariable String courseId){
