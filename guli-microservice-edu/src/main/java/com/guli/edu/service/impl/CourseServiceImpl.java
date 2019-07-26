@@ -150,7 +150,12 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         queryWrapperVideo.eq("course_id",id);
         videoMapper.delete(queryWrapperVideo);
 
+        //删除课程详情
+        descriptionMapper.deleteById(id);
+
         baseMapper.deleteById(id);
+
+        //todo 删除阿里云的视频 是否需要删
     }
 
     @Override
