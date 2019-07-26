@@ -156,6 +156,8 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         baseMapper.deleteById(id);
 
         //todo 删除阿里云的视频 是否需要删
+
+        //todo 删除阿里云 课程封面
     }
 
     @Override
