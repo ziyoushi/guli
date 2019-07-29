@@ -6,6 +6,7 @@ import com.guli.edu.entity.Teacher;
 import com.guli.edu.query.TeacherQuery;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -21,4 +22,7 @@ public interface TeacherService extends IService<Teacher> {
 
     //没有参数 只查询所有的teacher名和id
     List<Teacher> getAllTeacherName();
+
+    //讲师分页查询
+    Map<String, Object> pageListWeb(Page<Teacher> pageParam);
 }
