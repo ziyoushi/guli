@@ -20,4 +20,7 @@ public interface VideoService {
 
     //刷新上传凭证
     RefreshUploadVideoResponse refreshUploadAuthAndAddress(String videoId);
+
+    //根据videoId获取播放凭证
+    String getVideoPlayAuth(String videoId);
 }
