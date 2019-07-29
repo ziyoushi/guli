@@ -3,6 +3,7 @@ package com.guli.edu.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.guli.edu.entity.Course;
 import com.guli.edu.vo.CoursePublishVo;
+import com.guli.edu.vo.CourseWebVo;
 
 /**
  * <p>
@@ -15,4 +16,7 @@ import com.guli.edu.vo.CoursePublishVo;
 public interface CourseMapper extends BaseMapper<Course> {
 
     CoursePublishVo selectCoursePublishVoById(String id);
+
+    //根据id查询课程
+    CourseWebVo selectCourseWebVoById(String courseId);
 }
