@@ -6,6 +6,10 @@ import com.guli.edu.entity.Course;
 import com.guli.edu.form.CourseInfoForm;
 import com.guli.edu.query.CourseQuery;
 import com.guli.edu.vo.CoursePublishVo;
+import com.guli.edu.vo.CourseWebVo;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -37,4 +41,13 @@ public interface CourseService extends IService<Course> {
 
     //根据id发布课程
     void publishCourseById(String id);
+
+    //课程列表分页查询
+    Map<String, Object> pageListWeb(Page<Course> pageParam);
+
+    //根据id查询课程信息
+    CourseWebVo selectCourseWebVoById(String id);
+
+    //根据讲师id查询讲师所讲课程列表
+    List<Course> selectByTeacherId(String teacherId);
 }
