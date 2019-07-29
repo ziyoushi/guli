@@ -126,4 +126,28 @@ public class VideoServiceImpl implements VideoService {
         }
 
     }
+
+    @Override
+    public String getVideoPlayAuth(String videoId) {
+        DefaultAcsClient client = null;
+        try {
+            client = AliyunVodSDKUtils.initVodClient(
+                    ConstantPropertiesUtil.ACCESS_KEY_ID,
+                    ConstantPropertiesUtil.ACCESS_KEY_SECRET);
+
+            //请求
+            GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+            request.setVideoId(videoId);
+
+            //响应
+            GetVideoPlayAuthResponse response = client.getAcsResponse(request);
+
+            //得到播放凭证
+            String playAuth = response.getPlayAuth();
+
+            return playAuth;
+        } catch (ClientException e) {
+            throw new GuliException(ResultCodeEnum.REFRESH_VIDEO_PLAYAUTH_ERROR);
+        }
+    }
 }
